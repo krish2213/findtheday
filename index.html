@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta name = "viewport" content = "width = device-width,initial-scale=1">
+        <title>Day of the week</title>
+        <style>
+            h1 {
+                font-size: 50px;
+                font-family:"Georgia";
+                color:rgb(34, 112, 230);
+                -webkit-text-stroke-width: 2px;
+                -webkit-text-stroke-color: black;
+            }
+            form{
+                font-family:"Times New Roman";
+                color:black;
+            }
+            body{
+                    background-image: url("day6.png");
+                    background-repeat: no-repeat;
+                    background-attachment:  fixed;
+                    background-size: 100% 100%;
+                }
+                #NUM1, #NUM2, #NUM3{
+                    border-radius: 20px;
+                    border: 3px solid rgb(42, 41, 39);
+                    padding: 15px; 
+                    width: 200px;
+                    height: 20px;    
+                    font-family: "Times New Roman";
+                    color: rgb(45, 9, 78);
+            }
+            #submit{border-radius:25px;border: 2px solid rgb(36, 6, 157); padding: 15px; width: 200px; height: 20px; font-family: "Times New Roman"; color:azure;}
+            .day{color:rgb(11, 60, 218);font-size:70px;font-family:"Brush Script MT";} 
+            .thedate {color:black;font-size: 50px;font-family: "Times New Roman";}
+            input {
+                    text-align: center;
+                    font-size:xx-large;
+            }
+            ::-webkit-input-placeholder {
+                    text-align: center;
+                    font-size: xx-large;
+                    font-family:'Times New Roman', Times, serif;
+            }
+            :-moz-placeholder {
+                text-align: center;
+                font-size: large;
+            }
+           
+        </style>
+    </head>
+        <body>
+            
+            <center>
+            <form>
+                <h1><b>FIND THE DAY</b></h1>
+                <br><br>
+                <input type = "number" min = "1" max = "31" id ="NUM1" style = "height:20px; width:200px;" placeholder="Date DD"/><br><br>
+                <input type = "number" min = "1" max = "12" id="NUM2" style = "height:20px; width:200px;" placeholder = "Month MM"/><br><br>
+                <input type = "number" min = "1900" max = "2699" id="NUM3" style = "height:20px; width:200px;" placeholder = "Year YY"/><br><br>
+                
+                <link rel = "stylesheet" type = "text/css" href = "./style2.c22.css"/>
+                <button class="button-63" role="button" onClick = "date()" type = "button" style = "height:40px; width:100px;" id = "submit">GET THE DAY</button><br>
+
+                
+            </form>
+            <p><span class = "thedate" id = "result"></span>
+                <br><br><br><br><br><br><br>
+                <span class = "day" id = "theday"></span>
+                
+                
+
+            </p>
+            <script>
+                function date(){
+                    num1 = document.getElementById("NUM1").value;
+                    num2 = document.getElementById("NUM2").value;
+                    num3 = document.getElementById("NUM3").value;
+                    if(num1 == null || num1 ==""){alert("Enter a Date")}
+                    else if(num2 == null || num2 == ""){alert("Enter the Month")}
+                    else if(num3 == null || num3 == ""){alert("Enter the Year")}
+                    else if(num1>31 || num1<1){alert("Invalid Date provided.");}
+                    else if(num2>12 || num2<1){alert("Invalid Month Provided.");}
+                    else if(num3>2699 || num3<1900){alert("Enter some year between 1900 and 2699");}
+                    else if(num1>29 && num2 == "2" || num2 == "02"){
+                        alert("February has either 28 or 29 days.");}
+                    else{
+                    document.getElementById("result").innerHTML = num1+"/"+num2+"/"+num3;
+                    document.getElementById("theday").innerHTML = findday();
+                }
+                function findday(){
+                    var temp_month;
+                    var int_month = parseInt(num2);
+                    var my_year = parseInt(num3)-1900;
+                    my_year = my_year/4;
+                    my_year = Math.floor(my_year);
+                    my_year = my_year+parseInt(num3)-1900;
+                    
+                    switch(int_month){
+                        case 1:
+                            if(isleap(parseInt(num3))==1){
+                                temp_month = 6;
+                                break;
+                            }
+                            else{
+                                temp_month = 1;
+                                break;
+                            }
+                            
+                        case 10:
+                            temp_month = 1;
+                            break;
+                        case 2:
+                            if(isleap(parseInt(num3))==1){
+                                temp_month = 2;
+                                break;
+                            }
+                            else{
+                                temp_month = 4;
+                                break;
+                            }
+                        case 3:
+                        case 11:
+                            temp_month = 4;
+                            break;
+                        case 7: 
+                        case 4: 
+                            temp_month = 0;
+                            break;
+                        case 5: 
+                            temp_month = 2;
+                            break;
+                        case 6:
+                            temp_month = 5;
+                            break;
+                        case 8:
+                            temp_month = 3;
+                            break;
+                        case 9:
+                        case 12: 
+                            temp_month = 6;
+                            break;
+                        
+                    }
+                    my_year = my_year + temp_month;
+                    my_year = my_year + parseInt(num1);
+                    var day = my_year%7;
+                    var answer;
+                    
+                    switch(day){
+                        case 0:answer = "Saturday";break;
+                        case 1:answer = "Sunday";break;
+                        case 2:answer="Monday";break;
+                        case 3:answer="Tuesday";break;
+                        case 4:answer="Wednesday";break;
+                        case 5:answer="Thursday";break;
+                        case 6:answer="Friday"; break;
+                    }
+                    return answer;
+                   
+                }
+                function isleap(year){
+                   
+                    if(year%4 == 0 && year%100 != 0 || year%400 == 0){
+                        return 1;
+                    }
+                    else{
+                        return 0;
+                    }
+                }
+                
+                }
+                
+            </script>
+            </center>
+        </body>
+    
+    
+
+</html> 
