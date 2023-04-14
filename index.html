@@ -60,7 +60,7 @@
                 <input type = "number" min = "1900" max = "2699" id="NUM3" style = "height:20px; width:200px;" placeholder = "Year YY"/><br><br>
                 
                 <link rel = "stylesheet" type = "text/css" href = "./style2.c22.css"/>
-                <button class="button-63" role="button" onClick = "date()" type= "button" id = "submit">GET THE DAY</button><br>
+                <button class="button-63" role="button" onClick = "date()" type = "button" id = "submit">GET THE DAY</button><br>
 
                 
             </form>
@@ -82,7 +82,7 @@
                     else if(num1>31 || num1<1){alert("Invalid Date provided.");}
                     else if(num2>12 || num2<1){alert("Invalid Month Provided.");}
                     else if(num3>2699 || num3<1900){alert("Enter some year between 1900 and 2699");}
-                    else if(num1>29 && Number(num2)==2{
+                    else if(num1>29 && Number(num2)==2){
                         alert("February has either 28 or 29 days.");}
                     else{
                     document.getElementById("result").innerHTML = num1+"/"+num2+"/"+num3;
