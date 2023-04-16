@@ -89,12 +89,14 @@
                     document.getElementById("theday").innerHTML = findday();
                 }
                 function findday(){
+                    var key_num = keynum(parseInt(num3));
+                    var std_year = stdyear((parseInt(num3)));
                     var temp_month;
                     var int_month = parseInt(num2);
-                    var my_year = parseInt(num3)-1900;
+                    var my_year = parseInt(num3)-std_year;
                     my_year = my_year/4;
                     my_year = Math.floor(my_year);
-                    my_year = my_year+parseInt(num3)-1900;
+                    my_year = my_year+key_num+(parseInt(num3)-std_year);
                     
                     switch(int_month){
                         case 1:
@@ -167,6 +169,53 @@
                     else{
                         return 0;
                     }
+                }
+                function keynum(x){
+                    if((x>=1700 && x<=1799)|| (x>=2100 && x<= 2199) || (x>=2500 && x<= 2599)){
+                        return 4;
+                    }
+                    else if((x>=1800 && x<=1899) || (x>=2200 && x<= 2299) || (x>=2600 && x<= 2699)){
+                        return 2;
+                    }
+                    else if((x>=1900 && x<=1999) || (x>=2300 && x<= 2399)){
+                        return 0;
+                    }
+                    else if((x>=2000 && x<=2099) || (x>=2400 && x<=2499)){
+                        return 6;
+                    }
+                }
+                function stdyear(x){
+                    if(x>=1700 && x<=1799){
+                        return 1700;
+                    }
+                    else if(x>=1800 && x<= 1899){
+                        return 1800;
+                    }
+                    else if(x>=1900 && x<=1999){
+                        return 1900;
+                    }
+                    else if(x>=2000 && x<= 2099){
+                        return 2000;
+                    }
+                    else if(x>=2100 && x<=2199){
+                        return 2100;
+                    }
+                    else if(x>=2200 && x<= 2299){
+                        return 2200;
+                    }
+                    else if(x>=2300 && x<=2399){
+                        return 2300;
+                    }
+                    else if(x>=2400 && x<= 2499){
+                        return 2400;
+                    }
+                    else if(x>=2500 && x<=2599){
+                        return 2500;
+                    }
+                    else if(x>=2600 && x<=2699){
+                        return 2600;
+                    }
+                    
                 }
                 
                 }
