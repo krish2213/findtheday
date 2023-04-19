@@ -11,6 +11,12 @@
                 -webkit-text-stroke-width: 2px;
                 -webkit-text-stroke-color: black;
             }
+            h3{
+                font-size: 25px;
+                font-family:"Times New Roman";
+                color:black;
+               
+            }
             form{
                 font-family:"Times New Roman";
                 color:black;
@@ -66,12 +72,16 @@
             </form>
             <p><span class = "thedate" id = "result"></span>
                 <br><br><br><br><label><font face = "Brush Script MT" style = "font-size: 40pt;">The Day is</font></label><br>
-                <span class = "day" id = "theday"></span>
+                <span class = "day" id = "theday"></span><br><br>
+                 <h3><span id = "time"></span></h3>
                 
                 
 
             </p>
             <script>
+                var datetime = new Date();
+                console.log(datetime);
+                document.getElementById("time").textContent = datetime;
                 function date(){
                     num1 = document.getElementById("NUM1").value;
                     num2 = document.getElementById("NUM2").value;
